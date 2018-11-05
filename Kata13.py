@@ -159,3 +159,38 @@ print("El rendimiento es: ")
 print(y3)
 plt.plot(x2,y2)
 plt.show()
+
+#2) Una persona se somete a una dieta durante 5 semanas. A continuación se detalla su peso al término de cada una de esas semanas. 
+#Al cabo de ... (semanas) X 1 2 3 4 5 
+#Peso en Kg. Y 88 87 84 82 79
+#¿Qué peso es de esperar que alcance esa persona si sigue la dieta 2 semanas más? 
+
+import math
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = [1,2,3,4,5]
+y = [88,87,84,82,79]
+
+n = 5
+plt.plot(x, y, 'ro')
+plt.show()
+
+sumx = sum(x)
+sumy = sum(y)
+sumx2 = sum( xi * xi for xi in x  )
+sumxy = sum ( xi * yi for xi, yi in zip(x,y) )
+
+xprom = sumx/n
+yprom = sumy/n
+sumarr = sum((xi-xprom )*(yi-yprom)for xi,yi in zip(x,y))
+sumbaj1= sum((xi-xprom)**2 for xi in x)
+sumbaj2= sum((yi-yprom)**2 for yi in y)
+r = sumarr / ((math.sqrt(sumbaj1))*(math.sqrt(sumbaj2)))
+m = (sumxy - (sumx*sumy/n))/(sumx2 - (sumx*sumx/n))
+b = (sumy/n) - (m * (sumx/n))
+res = m*7 + b
+
+
+print("El peso es:")
+print (res)
